@@ -38,7 +38,7 @@ jobs:
             github.event.pull_request.head.sha || '' }}
       - run: |
           srv=https://github.com/siderolabs/conform
-          ver=0.1.0-alpha.31
+          ver=0.1.0-alpha.32
           url=$srv/releases/download/v$ver/conform-linux-amd64
           curl \
             --fail \
