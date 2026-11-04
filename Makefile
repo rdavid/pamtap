@@ -17,6 +17,10 @@ install: main.o
 	sudo ld -x --shared -o $(LIBDIR)/$(MODULE) main.o
 
 clean:
-	rm -f main.o
+	rm -f main.o $(MODULE)
 
-test:
+$(MODULE): main.o
+	ld -x --shared -o $(MODULE) main.o
+
+test: $(MODULE)
+	sh test.sh $(MODULE)

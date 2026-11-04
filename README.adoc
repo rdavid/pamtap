@@ -15,6 +15,7 @@
 :url-hoc: https://hitsofcode.com/view/github/rdavid/pamtap?branch=master
 :url-license: https://github.com/rdavid/pamtap/blob/master/LICENSES/0BSD.txt
 :url-pam: https://github.com/linux-pam/linux-pam
+:url-pamtester: https://pamtester.sourceforge.net
 :url-reuse: https://github.com/fsfe/reuse-action
 :url-sudo-timeout: https://askubuntu.com/questions/636092/how-to-get-sudo-to-prompt-you-for-a-password-each-time
 :url-typos: https://github.com/crate-ci/typos
@@ -111,11 +112,17 @@ The module builds with `make`:
 ----
 make main     # compile main.o with -Wall -Wextra -Werror
 make install  # link pamtap.so into the PAM modules directory
+make test     # load the module into a throwaway PAM service and check it
 ----
 
+The `make test` target builds the module, loads it into a disposable PAM
+service, drives an authentication with {url-pamtester}[`pamtester`], and
+asserts the attempt reaches the log.
+It needs `sudo` to write the service file under `/etc/pam.d`.
+
 Continuous integration compiles `main.c` with both `gcc` and `clang`, runs
-the {url-cppcheck}[`cppcheck`] static analyzer, and applies the following
-linters:
+the behavioral `make test`, runs the {url-cppcheck}[`cppcheck`] static
+analyzer, and applies the following linters:
 {url-actionlint}[`actionlint`],
 {url-checkmake}[`checkmake`],
 {url-conform}[`conform`],

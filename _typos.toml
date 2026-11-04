@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: 2026 David Rabkin
+# SPDX-License-Identifier: 0BSD
+
+# "noet" is the vim noexpandtab option in the script modeline, not a typo.
+[default.extend-words]
+noet = "noet"
