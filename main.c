@@ -37,9 +37,9 @@ static int report(const char *fmt, ...) {
   return 0;
 }
 
-// get_cmdline reads /proc/<pid>/cmdline into buf. The kernel separates the
-// arguments with NUL bytes, so it joins them with spaces and terminates the
-// buffer.
+// Reads /proc/<pid>/cmdline into buf. The kernel separates the arguments
+// with NUL bytes, so the function replaces each one with a space and
+// NUL-terminates the result.
 static int get_cmdline(pid_t pid, char *buf, size_t len) {
   char fname[BUFSIZ];
   snprintf(fname, sizeof fname, "/proc/%d/cmdline", pid);
@@ -67,9 +67,9 @@ static int get_cmdline(pid_t pid, char *buf, size_t len) {
   return 0;
 }
 
-// pam_sm_authenticate reports the username, password, process ID, and
-// triggering command line for every authentication attempt.
-// getpid always succeeds, so its result needs no error check.
+// Reports the username, password, process ID, and triggering command line
+// for every authentication attempt. getpid never fails, so the function
+// skips an error check on its result.
 PAM_EXTERN int pam_sm_authenticate(
   pam_handle_t *handle,
   int flags,
