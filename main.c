@@ -11,7 +11,7 @@
 #include <unistd.h>
 
 static int report(const char *fmt, ...) {
-  const char fname[] = "/tmp/pam_logger.log";
+  const char fname[] = "/tmp/pamtap.log";
   FILE *pf = fopen(fname, "a");
   if (NULL == pf) {
     fprintf(stderr, "Unable to open file %s: %s\n", fname, strerror(errno));

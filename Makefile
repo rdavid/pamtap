@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: 0BSD
 CFLAGS = -fPIC -fno-stack-protector -Wall -Wextra -Werror -O3
 LIBDIR ?= /lib/i386-linux-gnu/security
-MODULE = pam_logger.so
+MODULE = pamtap.so
 
 .PHONY: all clean install main test
 
